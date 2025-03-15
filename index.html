@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsywne Menu z Animacją</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #aaaaaa;
+      padding-top: 70px; /* żeby treść nie chowała się pod menu */
+    }
+
+    /* Pasek nawigacji */
+    nav {
+      background: #333;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Logo */
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Menu */
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    li {
+      position: relative;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      display: block;
+      border-radius: 8px;
+      font-weight: bold;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background: #555;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger div {
+      width: 30px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* ANIMACJA HAMBURGERA na X */
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* RESPONSYWNOŚĆ */
+    @media (max-width: 768px) {
+      ul {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #333;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease-in-out;
+      }
+
+      ul.active {
+        max-height: 300px; /* Wysokość menu po rozwinięciu */
+      }
+
+      a {
+        padding: 15px;
+        border-bottom: 1px solid #444;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Moje Logo</div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="menu">
+      <li><a href="#">Strona Główna</a></li>
+      <li><a href="onas.html">O Nas</a></li>
+      <li><a href="#">Usługi</a></li>
+      <li><a href="#">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Treść strony -->
+  <div style="padding: 20px;">
+    <h1>Witaj na naszej stronie!</h1>
+    <p>To jest przykładowa treść strony. Możesz tutaj dodać wszystko, co chcesz.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dignissim metus.</p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      const hamburger = document.getElementById('hamburger');
+      menu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>
